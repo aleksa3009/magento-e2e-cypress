@@ -1,15 +1,15 @@
-# Node dependencies
+# Node modules – do not commit dependencies
 node_modules/
 
-# Cypress artifacts
+# Cypress artifacts – videos and screenshots
 cypress/videos/
 cypress/screenshots/
 
-# Coverage reports
+# Coverage and test reports
 coverage/
 reports/
 
-# Environment variables
+# Environment variables – local sensitive data
 .env
 
 # OS / Editor temporary files

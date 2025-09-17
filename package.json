@@ -1,0 +1,35 @@
+{
+  "name": "magento-e2e-cypress",
+  "version": "1.0.0",
+  "description": "This repository contains an end-to-end Cypress automation project for the Magento demo e-commerce site: [https://magento.softwaretestingboard.com](https://magento.softwaretestingboard.com).",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --reporter mochawesome --reporter-options reportDir=reports/mochawesome,overwrite=false,html=false,json=true",
+    "report:merge": "mochawesome-merge reports/mochawesome/*.json > reports/mochawesome/merged.json && marge reports/mochawesome/merged.json -f report -o reports/mochawesome/html",
+    "coverage": "nyc report --reporter=html",
+    "test": "npm run cy:run && npm run report:merge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksa3009/magento-e2e-cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aleksa3009/magento-e2e-cypress/issues"
+  },
+  "homepage": "https://github.com/aleksa3009/magento-e2e-cypress#readme",
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.14.6",
+    "@faker-js/faker": "^10.0.0",
+    "cross-env": "^10.0.0",
+    "cypress": "^15.2.0",
+    "cypress-axe": "^1.7.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^4.3.0",
+    "nyc": "^15.1.0"
+  }
+}
