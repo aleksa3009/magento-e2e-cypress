@@ -1,0 +1,27 @@
+{
+    "items": [
+      {
+        "id": 301,
+        "sku": "HOODIE-GREEN-01",
+        "name": "Green Hoodie",
+        "price": 34.99,
+        "category": "Clothing"
+      },
+      {
+        "id": 302,
+        "sku": "CAP-WHITE-01",
+        "name": "White Baseball Cap",
+        "price": 12.5,
+        "category": "Accessories"
+      },
+      {
+        "id": 303,
+        "sku": "SNEAKERS-BLACK-01",
+        "name": "Black Sneakers",
+        "price": 59.99,
+        "category": "Footwear"
+      }
+    ],
+    "total_count": 3
+  }
+  
