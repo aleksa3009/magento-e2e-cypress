@@ -1,0 +1,14 @@
+{
+    "items": [
+      {
+        "item_id": 1003,
+        "sku": "TSHIRT-BLUE-01",
+        "name": "Blue T-Shirt",
+        "price": 21.99,
+        "qty": 1,
+        "row_total": 21.99
+      }
+    ],
+    "items_count": 1,
+    "grand_total": 21.99
+}

@@ -1,0 +1,22 @@
+{
+    "items": [
+      {
+        "item_id": 1001,
+        "sku": "TSHIRT-RED-01",
+        "name": "Red T-Shirt",
+        "price": 19.99,
+        "qty": 1,
+        "row_total": 19.99
+      },
+      {
+        "item_id": 1002,
+        "sku": "MUG-BLACK-01",
+        "name": "Black Coffee Mug",
+        "price": 9.5,
+        "qty": 2,
+        "row_total": 19.0
+      }
+    ],
+    "items_count": 3,
+    "grand_total": 38.99
+}  
