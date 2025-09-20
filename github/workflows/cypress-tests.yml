@@ -11,6 +11,7 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,13 +29,18 @@ jobs:
         with:
           browser: electron
           record: false
+          spec: |
+            cypress/e2e/cart.cy.js
+            cypress/e2e/checkout.cy.js
+            cypress/e2e/checkout-registered.cy.js
+            cypress/e2e/checkout-negative.cy.js
 
       - name: Merge Mochawesome reports
         run: |
           npx mochawesome-merge reports/mochawesome/*.json > reports/mochawesome/merged.json
           npx marge reports/mochawesome/merged.json -f report -o reports/mochawesome/html
 
-      - name: Upload Cypress videos & screenshots (optional)
+      - name: Upload Cypress videos, screenshots & HTML report
         if: always()
         uses: actions/upload-artifact@v3
         with:
@@ -43,3 +49,6 @@ jobs:
             cypress/videos
             cypress/screenshots
             reports/mochawesome/html
+
+      - name: Display HTML report path
+        run: echo "HTML report available at reports/mochawesome/html/report.html"
