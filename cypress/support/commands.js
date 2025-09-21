@@ -1,9 +1,16 @@
 // cypress/support/commands.js
+
 import 'cypress-axe'
 import '@cypress/code-coverage/support'
 import { faker } from '@faker-js/faker'
 
-// Custom command to register a new user dynamically
+// Custom command: Accessibility check on current page
+Cypress.Commands.add('checkA11yPage', () => {
+  cy.injectAxe()
+  cy.checkA11y()
+})
+
+// Custom command: Register a new user dynamically
 Cypress.Commands.add('register', () => {
   const user = {
     firstName: faker.person.firstName(),
@@ -12,20 +19,26 @@ Cypress.Commands.add('register', () => {
     password: 'Test1234!'
   }
 
-  cy.visit('/customer/account/create/') // adapt URL if needed
+  // Go to registration page
+  cy.visit('/customer/account/create/') // adapt if URL differs
+
+  // Fill form
   cy.get('#firstname').type(user.firstName)
   cy.get('#lastname').type(user.lastName)
   cy.get('#email_address').type(user.email)
   cy.get('#password').type(user.password)
   cy.get('#password-confirmation').type(user.password)
+
+  // Submit
   cy.get('button[title="Create an Account"]').click()
 
-  // Wait for UI to stabilize
+  // Wait for UI update
   cy.wait(2000)
 
   // Log out to reset state
   cy.get('button[data-action="customer-menu-toggle"]').first().click()
   cy.contains('Sign Out').click()
 
-  return cy.wrap(user) // allow test to access registered user
+  // Return user object so test can use it
+  return cy.wrap(user)
 })

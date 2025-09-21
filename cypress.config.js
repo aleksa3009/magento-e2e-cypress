@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress')
+const { lighthouse, prepareAudit } = require('cypress-audit')
 
 module.exports = defineConfig({
   e2e: {
@@ -9,11 +10,22 @@ module.exports = defineConfig({
     supportFile: 'cypress/support/e2e.js',
 
     setupNodeEvents(on, config) {
+      // Prepare Lighthouse audit
+      on('before:browser:launch', (browser = {}, launchOptions) => {
+        prepareAudit(launchOptions)
+      })
+
+      // Cypress-audit task
+      on('task', {
+        lighthouse: lighthouse(),
+      })
+
       // Code coverage task (ako je instaliran)
       require('@cypress/code-coverage/task')(on, config)
 
       // Mochawesome reporter
       require('cypress-mochawesome-reporter/plugin')(on)
+
       return config
     },
 
@@ -37,7 +49,7 @@ module.exports = defineConfig({
       reportDir: 'reports/mochawesome/html',
       overwrite: false,
       html: true,
-      json: true
-    }
-  }
+      json: true,
+    },
+  },
 })

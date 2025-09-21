@@ -10,7 +10,10 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout repository
@@ -27,13 +30,10 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
         with:
-          browser: electron
+          browser: chrome
           record: false
           spec: |
-            cypress/e2e/cart.cy.js
-            cypress/e2e/checkout.cy.js
-            cypress/e2e/checkout-registered.cy.js
-            cypress/e2e/checkout-negative.cy.js
+            cypress/e2e/**/*.cy.js
 
       - name: Merge Mochawesome reports
         run: |
